@@ -1,4 +1,4 @@
-# FIFA WORLD CUP SOCIAL NETWORK webapplication using MERN Stack.
+# FIFA WORLD CUP SOCIAL NETWORK using MERN Stack
 
 A simple social media application with users, posts, likes and comments - developed using React, Node, Express and MongoDB. 
 The views needed for the MERN Social application will be developed by extending and modifying the existing React components in the MERN skeleton application.
@@ -15,17 +15,43 @@ make up the MERN Social frontend and also exposes the composition structure we w
 ## React Compnonent View
 <img src="https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/36436123_10155419009510896_5938018038791012352_n.jpg?_nc_cat=0&oh=081a7b7b4393a0e18480bea94fe29646&oe=5BA33F21" align="center" width="100%" alt="Views">
 
-RESTful Application architecture requires that a client make a request to the server in order to retrieve or modify data on the server.
-There are 4 basic HTTP verbs we use in requests to interact with resources in a REST system: GET, POST, PUT, DELETE
+## RESTful Application architecture:
+
+* requires that a client make a request to the server in order to retrieve or modify data on the server.
+* There are 4 basic HTTP verbs we use in requests to interact with resources in a REST system: GET, POST, PUT, DELETE
 Models contains CRUD functions ( CREATE, READ, UPDATE, DELETE) corresponds to the HTTP methods for persistent storage in relational databases.
 
-MVC software architecture:
+## MVC software architecture:
 
 * MODEL is the application's dynamical data structure, independent of the user interface. It directly manages the data, logic and rules of the application. Post.Model and User.Model was used.
 
 * VIEWS is the React to add an interactive user interface to the basic user and auth features implemented for the backend. In addition, to enable client-side routing we will use React Router, and to enhance the user experience with a sleek look and feel we will use Material-UI.
 
 * CONTROLLER for authorization, posts, and user profiles are received by user input and makes calls to model objects and the view to perform appropriate actions.
+
+## Security - JSON web tokens – client-side or server-side storage
+Auth-related security implementation is simplified with JSON Web Tokens.  With the JWT authentication mechanism, the client side becomes responsible for maintaining user state. Once the user signs in, the token sent by the server is stored and maintained by the client-side code on browser storage, such as sessionStorage. Hence, it is also up to the client-side code to invalidate the token by removing it when a user signs out or needs to be signed out. This mechanism works out well for most applications that need minimal authentication to protect access to resources. However, for instances where it may be necessary to track user sign-ins, sign-outs, and to let the server know that a specific token is no longer valid for sign-in, just the client-side handling of the tokens is not enough.
+
+## How JWT works
+When a user successfully signs in using their credentials, the server side generates a JWT signed with a secret key and a unique user detail. Then, this token is returned to the requesting client to be saved locally either in localStorage, sessionStorage, or a cookie in the browser, essentially handing over the responsibility of maintaining user state to the client side:
+
+<img src="https://scontent-sjc3-1.xx.fbcdn.net/v/t1.0-9/36686749_10155425595980896_8900476996836917248_n.jpg?_nc_cat=0&oh=ea147b7824cd66d8c3af85cf7e2fa926&oe=5BA62C64" align="center" margin-left="auto" margin-right="auto" width="100%" alt="JWT">
+
+For HTTP requests made following a successful sign-in, specially requests for API endpoints that are protected and have restricted access, the client side has to attach this token to the request. 
+
+This token will then be required for verification when a user tries to view any user profiles, update their account details, or delete their user account.  Implementing the user model to store and validate user data, then integrating it with APIs to perform CRUD operations based on auth with JWT, will produce a functioning standalone backend. 
+
+## Securing password storage
+While storing user credentials for authentication in the User collection, we made sure that the original password string provided by the user is never stored directly in the database. Instead we generated a hash of the password along with a salt value using the crypto module in Node.
+
+In user.model.js from our applications, we defined the following functions to generate the hashed password and salt value.
+
+With this implementation, every time a user enters a password to sign in, a hash is generated with the salt. If the generated hash matches the stored hash, then the password is correct, otherwise the password is wrong. So in order to check whether a password is correct, the salt is required, and hence it is stored with the user details in the database along with the hash.
+
+This is standard practice for securing passwords stored for user authentication, but there
+are other advanced approaches that may be explored if a specific application's security
+requirements demand it. Some options that can be considered include multi-iteration hashing approaches, other secure hashing algorithms, limiting login attempts per user account, and multi-level authentication with additional steps such as answering security questions or entering security codes.
+
 
 ## Getting Started
 
@@ -90,8 +116,4 @@ Add additional notes about how to deploy this on a live system
 <a href="https://www.packtpub.com/web-development/full-stack-react-projects"><img src="https://s3.amazonaws.com/mernbook/git+/B09550_MockupSmall.png" align="center" width="400" alt="Full-Stack React Projects"></a>
 
 
-
-
-
-### [Live Demo](http://social.mernbook.com/ "MERN Social")
 
