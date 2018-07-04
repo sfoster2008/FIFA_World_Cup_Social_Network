@@ -13,9 +13,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/PsychoChris89/FIFA_World_Cup_Social_Network.git"
+    "url": "https://github.com/sfoster2008/FIFA_World_Cup_Social_Network"
   },
-  "homepage": "https://github.com/PsychoChris89/FIFA_World_Cup_Social_Network",
+  "homepage": "https://github.com/sfoster2008/FIFA_World_Cup_Social_Network",
   "main": "./dist/server.generated.js",
   "scripts": {
     "development": "nodemon",

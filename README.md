@@ -102,7 +102,7 @@ Add additional notes about how to deploy this on a live system
 ## Authors
 
 * **Christopher Tran** - *Initial work* - [Co-Fullstack Developer](https://github.com/PsychoChris89)
-* **Steve Foster** - *Initial work* - [Co-Fullstack Developer](#)
+* **Steve Foster** - *Initial work* - [Co-Fullstack Developer](https://github.com/sfoster2008/FIFA_World_Cup_Social_Network)
 
 
 ## Acknowledgments
